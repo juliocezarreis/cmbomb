@@ -22,9 +22,13 @@ public class CmBomb {
 	static int vitoria2 = 0;
 	static boolean jogar = true;
 	static boolean[] campo = new boolean[13];
-
 	static Scanner input = new Scanner(System.in);
 
+	/*Função para passar p/ próxima etapa*/
+        static void ok() {
+                System.out.println("Digite \"ok\" e tecle enter:");
+                String okay = input.next();
+        }
 	static void grafico1() {
 		System.out.println("+---------------+");
 		System.out.println("|     CMBOMB    |");
@@ -35,30 +39,25 @@ public class CmBomb {
 		System.out.println(" _______________");
 		System.out.println("| 9 | 10| 11| 12|");
 		System.out.println("+---------------+");
+		ok();
 	}
-
-	static void ok() {
-		System.out.println("Digite \"ok\" e tecle enter:");
-		String okay = input.next();
-	}
-
 	static void p1() {
-		System.out.println("Escolha 6 posicoes do grafico, voce estarah plantando uma bomba em cada uma.");
+		System.out.println("Escolha 6 posições do grafico, voce estarah plantando uma bomba em cada uma.");
 	}
-
 	static void p2() {
 		System.out.println(
-				"Escolha posicoes para se movimentar no campo, se conseguir 6 movimentos, vc sai na frente!\nCuidado com as bombas!:)");
+				"Escolha posições para se movimentar no campo, se conseguir 6 movimentos, você sai na frente!\nCuidado com as bombas!:)");
+		ok();
 	}
-
 	static void p3() {
-		System.out.println("Agora vc vai implantar! Jah sabe como eh...");
+		System.out.println("Agora você vai implantar, Já sabe como é.");
+		ok();
 	}
-
 	static void p4() {
-		System.out.println("Agora tente se movimentar no campo! Jah sabe como eh...");
+		System.out.println("Agora tente se movimentar no campo, Já sabe como é.");
+		ok();
 	}
-
+	/*Implantação de bombas*/
 	static void implantacao1() {
 		int posicao;
 		for (int i = 0; i < 6; i++) {
@@ -89,7 +88,7 @@ public class CmBomb {
 			}
 		}
 	}
-
+	/*Tentativa de sobrevivência*/
 	static void tentativa1() {
 		boolean continua = true;
 		int posicaot1;
@@ -135,7 +134,6 @@ public class CmBomb {
 			campo[i] = false;
 		}
 	}
-
 	static void implantacao2() {
 		int posicao2;
 		for (int i = 0; i < 6; i++) {
@@ -166,7 +164,6 @@ public class CmBomb {
 			}
 		}
 	}
-
 	static void tentativa2() {
 		boolean continua2 = true;
 		int posicaot2;
@@ -212,7 +209,7 @@ public class CmBomb {
 			campo[i] = false;
 		}
 	}
-
+	/*Caso o jogue saia empatado, tem uma função desempate*/
 	static void empate() {
 		JOptionPane.showMessageDialog(null, "Empate!\nVamos fazer uma rodada desempate :)");
 		String f1 = JOptionPane.showInputDialog(null, player1 + "\nDigite um numero de 1 a 10:");
@@ -248,11 +245,9 @@ public class CmBomb {
 			System.out.println(player2 + ", voce implanta e " + player1 + " tenta se movimentar.");
 			ok();
 		}
-		//
 		for (int i = 0; i < campo.length; i++) {
 			campo[i] = false;
 		}
-		//
 		int posicao3;
 		for (int i = 0; i < 6; i++) {
 			String implante3 = JOptionPane.showInputDialog(null, "Digite um numero:");
@@ -288,8 +283,10 @@ public class CmBomb {
 			System.out.println(player1 + ", tente se movimentar no grafico :) !");
 			ok();
 		}
+
 		boolean continua3 = true;
 		int posicaot3;
+
 		for (int i = 0; i < 6; i++) {
 			String escolha3 = JOptionPane.showInputDialog(null,
 					"❤️ = " + vida + ", " + porcent + "%\nDigite um numero:");
@@ -357,32 +354,30 @@ public class CmBomb {
 			}
 		}
 	}
-
 	public static void main(String[] args) {
-
 		do {
 			player1 = JOptionPane.showInputDialog(null, "Player1:");
 			player2 = JOptionPane.showInputDialog(null, "Player2:");
 
 			System.out.println(player1);
+
 			p1();
-
 			grafico1();
-			ok();
-
 			implantacao1();
+
 			System.out.println("\n" + player2);
+
 			p2();
-			ok();
 			tentativa1();
 
 			System.out.println("\n" + player2);
+
 			p3();
-			ok();
 			implantacao2();
+
 			System.out.println("\n" + player1);
+
 			p4();
-			ok();
 			tentativa2();
 
 			if (vitoria1 == vitoria2) {
@@ -402,9 +397,7 @@ public class CmBomb {
 					jogar = false;
 				}
 			}
-
 			if (jogar) {
-
 				fim = "";
 				player1 = "";
 				player2 = "";
@@ -417,12 +410,10 @@ public class CmBomb {
 				vitoria1 = 0;
 				vitoria2 = 0;
 				jogar = true;
-
 				for (int i = 0; i < campo.length; i++) {
 					campo[i] = false;
 				}
 			}
-
 		} while (jogar);
 	}
 }
